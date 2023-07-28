@@ -1,7 +1,7 @@
 import { useResult } from "../../contexts/ResultContext"
 import { usePostcodes } from "../../contexts/PostcodesContext"
 import { useNavigate } from "react-router-dom"
-import { minutesToHours } from "../../utils"
+import { minutesToHours, stringToNumber } from "../../utils"
 import { Header } from "../Header"
 
 // Styles
@@ -13,20 +13,7 @@ export const Result = () => {
   const { setPostcodes } = usePostcodes()
   const navigate = useNavigate()
 
-  const totalMinutesArray: number[] = []
-  const totalDistanceArray: number[] = []
-
-  if (result) {
-    result.map((item) => {
-      const newItem = item.split(",")
-      totalMinutesArray.push(parseInt(newItem[0]))
-      totalDistanceArray.push(parseFloat(newItem[1]))
-      return null
-    })
-  }
-
-  const totalMinutes = totalMinutesArray.reduce((acc, curr) => acc + curr, 0)
-  const totalDistance = totalDistanceArray.reduce((acc, curr) => acc + curr, 0)
+  const { totalMinutes, totalDistance } = stringToNumber(result)
   const totalTime = minutesToHours(totalMinutes)
 
   const startOver = () => {
