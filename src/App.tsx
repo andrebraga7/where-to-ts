@@ -15,12 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/planning" element={<Planning />} />
-        {/* {currentView === "landing" ? ( */}
-        {/* ) : currentView === "planning" ? (
-        <Planning setCurrentView={setCurrentView} setResult={setResult} />
-      ) : (
-        <Results setCurrentView={setCurrentView} result={result} />
-      )} */}
+        <Route path="/result" element={null} />
       </Routes>
     </div>
   )

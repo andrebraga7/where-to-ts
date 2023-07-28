@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { usePostcodes } from "../../contexts/PostcodesContext"
+import { useResult } from "../../contexts/ResultContext"
 import { useNavigate } from "react-router-dom"
 import btnStyles from "../../styles/Button.module.scss"
 import { Header } from "../Header"
@@ -13,6 +14,7 @@ export const Planning = () => {
   const { postcodes } = usePostcodes()
   const [travelMode, setTravelMode] = useState("Driving")
   const [hasLoaded, setHasLoaded] = useState(true)
+  const { setResult } = useResult()
   const navigate = useNavigate()
 
   const handleClick = (event: React.MouseEvent) => {
@@ -52,7 +54,7 @@ export const Planning = () => {
       ? setResult(parsed)
       : setResult(false)
     setHasLoaded(true)
-    setCurrentView("results")
+    navigate("/result")
   }
 
   return (
