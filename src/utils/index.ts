@@ -1,0 +1,1 @@
+export { formatPostcode } from './utils'
