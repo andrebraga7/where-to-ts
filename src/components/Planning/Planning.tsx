@@ -1,15 +1,15 @@
 import { useState } from "react"
+import { usePostcodes } from "../../contexts/PostcodesContext"
 import btnStyles from "../../styles/Button.module.scss"
 import { Header } from "../Header"
 import { StartingPoint } from "../StartingPoint"
-// import StartingPoint from "./StartingPoint"
 // import PostcodesList from "./PostcodesList"
 // import TravelMode from "./TravelMode"
 // import Spinner from "../assets/Spinner"
 
 export const Planning = () => {
   // useState hook to create a postcodes array
-  const [postcodes, setPostcodes] = useState([])
+  const { postcodes } = usePostcodes()
   const [travelMode, setTravelMode] = useState("Driving")
   const [hasLoaded, setHasLoaded] = useState(true)
 
@@ -59,8 +59,7 @@ export const Planning = () => {
         <StartingPoint />
       ) : (
         <div>
-          {null}
-          {/* {hasLoaded ? (
+          {hasLoaded ? (
             <div>
               <TravelMode
                 travelMode={travelMode}
@@ -90,7 +89,7 @@ export const Planning = () => {
             </div>
           ) : (
             <Spinner />
-          )} */}
+          )}
         </div>
       )}
     </div>

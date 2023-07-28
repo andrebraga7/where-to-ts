@@ -2,15 +2,16 @@ import { useState } from "react"
 import styles from "../../styles/StartingPoint.module.scss"
 import btnStyles from "../../styles/Button.module.scss"
 import { formatPostcode } from "../../utils"
+import { usePostcodes } from "../../contexts/PostcodesContext"
 
 export const StartingPoint = () => {
   const [startingPoint, setStartingPoint] = useState("")
+  const { setPostcodes } = usePostcodes()
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
     const formattedPostcode = formatPostcode(startingPoint)
-    console.log(formattedPostcode)
-    // setPostcodes([formattedPostcode])
+    setPostcodes([formattedPostcode])
   }
 
   return (
