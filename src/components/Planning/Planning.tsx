@@ -1,17 +1,19 @@
 import { useState } from "react"
 import { usePostcodes } from "../../contexts/PostcodesContext"
+import { useNavigate } from "react-router-dom"
 import btnStyles from "../../styles/Button.module.scss"
 import { Header } from "../Header"
 import { StartingPoint } from "../StartingPoint"
 // import PostcodesList from "./PostcodesList"
 import { TravelMode } from "../TravelMode"
-// import Spinner from "../assets/Spinner"
+import { Spinner } from "../../assets/Spinner/Spinner"
 
 export const Planning = () => {
   // useState hook to create a postcodes array
   const { postcodes } = usePostcodes()
   const [travelMode, setTravelMode] = useState("Driving")
   const [hasLoaded, setHasLoaded] = useState(true)
+  const navigate = useNavigate()
 
   // const handleClick = (event: React.MouseEvent) => {
   //   postcodes.length === 1 ? event.preventDefault() : calculateJourney()
@@ -74,7 +76,7 @@ export const Planning = () => {
                   postcodes.length === 1 ? btnStyles.Grey : btnStyles.Green
                 }`}
                 // When user clicks button currentView updates to results and trigers component reload
-                onClick={handleClick}
+                onClick={() => {}}
               >
                 Calculate journey
               </button>
@@ -82,7 +84,7 @@ export const Planning = () => {
               <button
                 className={`${btnStyles.Button} ${btnStyles.Black}`}
                 // When user clicks button currentView updates to landing and trigers component reload
-                onClick={() => setCurrentView("landing")}
+                onClick={() => navigate("/")}
               >
                 Start Over
               </button>
