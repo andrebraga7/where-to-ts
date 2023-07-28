@@ -9,3 +9,9 @@ export const formatPostcode = (postcode: string) => {
   }
   return postcode
 }
+
+export const minutesToHours = (time: number) => {
+  const hours = Math.floor(time / 60)
+  const minutes = time % 60
+  return { hours, minutes }
+}

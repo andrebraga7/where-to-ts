@@ -1,9 +1,12 @@
 import { useResult } from "../../contexts/ResultContext"
 import { usePostcodes } from "../../contexts/PostcodesContext"
 import { useNavigate } from "react-router-dom"
+import { minutesToHours } from "../../utils"
+import { Header } from "../Header"
+
+// Styles
 import styles from "../../styles/Results.module.scss"
 import btnStyles from "../../styles/Button.module.scss"
-import { Header } from "../Header"
 
 export const Result = () => {
   const { result } = useResult()
@@ -24,15 +27,7 @@ export const Result = () => {
 
   const totalMinutes = totalMinutesArray.reduce((acc, curr) => acc + curr, 0)
   const totalDistance = totalDistanceArray.reduce((acc, curr) => acc + curr, 0)
-
-  // Convert total minutes into hours and minutes
-  const totalHoursMinutes = (time: number) => {
-    const hours = Math.floor(time / 60)
-    const minutes = time % 60
-    return { hours, minutes }
-  }
-
-  const totalTime = totalHoursMinutes(totalMinutes)
+  const totalTime = minutesToHours(totalMinutes)
 
   const startOver = () => {
     setPostcodes([])
@@ -71,7 +66,6 @@ export const Result = () => {
 
       <button
         className={`${btnStyles.Button} ${btnStyles.Black}`}
-        // When user clicks button currentView updates to landing and trigers component reload
         onClick={startOver}
       >
         Start Over
