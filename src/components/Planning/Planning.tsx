@@ -4,7 +4,7 @@ import btnStyles from "../../styles/Button.module.scss"
 import { Header } from "../Header"
 import { StartingPoint } from "../StartingPoint"
 // import PostcodesList from "./PostcodesList"
-// import TravelMode from "./TravelMode"
+import { TravelMode } from "../TravelMode"
 // import Spinner from "../assets/Spinner"
 
 export const Planning = () => {
@@ -65,10 +65,10 @@ export const Planning = () => {
                 travelMode={travelMode}
                 setTravelMode={setTravelMode}
               />
-              <PostcodesList
+              {/* <PostcodesList
                 setPostcodes={setPostcodes}
                 postcodes={postcodes}
-              />
+              /> */}
               <button
                 className={`${btnStyles.Button} ${
                   postcodes.length === 1 ? btnStyles.Grey : btnStyles.Green
