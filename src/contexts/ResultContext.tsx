@@ -7,8 +7,8 @@ import {
 } from "react"
 
 type ResultType = {
-  result: string[] | boolean
-  setResult: Dispatch<SetStateAction<string[] | boolean>>
+  result: string[] | null
+  setResult: Dispatch<SetStateAction<string[] | null>>
 }
 
 export const ResultContext = createContext<ResultType>({
@@ -19,7 +19,7 @@ export const ResultContext = createContext<ResultType>({
 export const useResult = () => useContext(ResultContext)
 
 export const ResultContextProvider = ({ children }: any) => {
-  const [result, setResult] = useState<string[] | boolean>([])
+  const [result, setResult] = useState<string[] | null>([])
 
   return (
     <ResultContext.Provider value={{ result, setResult }}>

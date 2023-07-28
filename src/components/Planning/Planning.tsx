@@ -50,9 +50,7 @@ export const Planning = () => {
     // Split the result string into an array and remove the empty element at the end
     const parsed = data.split(";").slice(0, -1)
 
-    parsed.length === postcodes.length - 1
-      ? setResult(parsed)
-      : setResult(false)
+    parsed.length === postcodes.length - 1 ? setResult(parsed) : setResult(null)
     setHasLoaded(true)
     navigate("/result")
   }
