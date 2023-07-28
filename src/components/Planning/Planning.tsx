@@ -15,44 +15,45 @@ export const Planning = () => {
   const [hasLoaded, setHasLoaded] = useState(true)
   const navigate = useNavigate()
 
-  // const handleClick = (event: React.MouseEvent) => {
-  //   postcodes.length === 1 ? event.preventDefault() : calculateJourney()
-  // }
+  const handleClick = (event: React.MouseEvent) => {
+    postcodes.length === 1 ? event.preventDefault() : calculateJourney()
+  }
 
   // Remove space from the middle of postcode and add %20 for API fetching
-  // const parsePostcodes = () => {
-  //   return postcodes.map((postcode) => {
-  //     const newPostcode = postcode.split("")
-  //     return newPostcode.toSpliced(-4, 1, "%20").join("")
-  //   })
-  // }
+  const parsePostcodes = () => {
+    return postcodes.map((postcode) => {
+      const newPostcode = postcode.split("")
+      newPostcode.splice(-4, 1, "%20")
+      return newPostcode.join("")
+    })
+  }
 
   // API fetch with async
-  // const calculateJourney = async () => {
-  //   setHasLoaded(false)
-  //   const parsed = parsePostcodes()
-  //   try {
-  //     const response = await fetch(
-  //       `https://media.carecontrolsystems.co.uk/Travel/JourneyPlan.aspx?Route=${parsed.toString()}&Format=Miles&TravelMode=${travelMode}&TrafficModel=best_guess`
-  //     )
-  //     const data = await response.text()
-  //     validateResult(data)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
+  const calculateJourney = async () => {
+    setHasLoaded(false)
+    const parsed = parsePostcodes()
+    try {
+      const response = await fetch(
+        `https://media.carecontrolsystems.co.uk/Travel/JourneyPlan.aspx?Route=${parsed.toString()}&Format=Miles&TravelMode=${travelMode}&TrafficModel=best_guess`
+      )
+      const data = await response.text()
+      validateResult(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   // Check to see if the result has the correct expected length
-  // const validateResult = (data) => {
-  //   // Split the result string into an array and remove the empty element at the end
-  //   const parsed = data.split(";").slice(0, -1)
+  const validateResult = (data: string) => {
+    // Split the result string into an array and remove the empty element at the end
+    const parsed = data.split(";").slice(0, -1)
 
-  //   parsed.length === postcodes.length - 1
-  //     ? setResult(parsed)
-  //     : setResult(false)
-  //   setHasLoaded(true)
-  //   setCurrentView("results")
-  // }
+    parsed.length === postcodes.length - 1
+      ? setResult(parsed)
+      : setResult(false)
+    setHasLoaded(true)
+    setCurrentView("results")
+  }
 
   return (
     <div>
@@ -73,7 +74,7 @@ export const Planning = () => {
                   postcodes.length === 1 ? btnStyles.Grey : btnStyles.Green
                 }`}
                 // When user clicks button currentView updates to results and trigers component reload
-                onClick={() => {}}
+                onClick={handleClick}
               >
                 Calculate journey
               </button>
