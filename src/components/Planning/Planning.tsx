@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import btnStyles from "../../styles/Button.module.scss"
 import { Header } from "../Header"
 import { StartingPoint } from "../StartingPoint"
-// import PostcodesList from "./PostcodesList"
+import { ListPostcodes } from "../ListPostcodes"
 import { TravelMode } from "../TravelMode"
 import { Spinner } from "../../assets/Spinner/Spinner"
 
@@ -67,10 +67,7 @@ export const Planning = () => {
                 travelMode={travelMode}
                 setTravelMode={setTravelMode}
               />
-              {/* <PostcodesList
-                setPostcodes={setPostcodes}
-                postcodes={postcodes}
-              /> */}
+              <ListPostcodes />
               <button
                 className={`${btnStyles.Button} ${
                   postcodes.length === 1 ? btnStyles.Grey : btnStyles.Green
