@@ -1,4 +1,5 @@
 import { useResult } from "../../contexts/ResultContext"
+import { usePostcodes } from "../../contexts/PostcodesContext"
 import { useNavigate } from "react-router-dom"
 import styles from "../../styles/Results.module.scss"
 import btnStyles from "../../styles/Button.module.scss"
@@ -6,6 +7,7 @@ import { Header } from "../Header"
 
 export const Result = () => {
   const { result } = useResult()
+  const { setPostcodes } = usePostcodes()
   const navigate = useNavigate()
 
   const totalMinutesArray: number[] = []
@@ -31,6 +33,11 @@ export const Result = () => {
   }
 
   const totalTime = totalHoursMinutes(totalMinutes)
+
+  const startOver = () => {
+    setPostcodes([])
+    navigate("/")
+  }
 
   return (
     <div>
@@ -65,7 +72,7 @@ export const Result = () => {
       <button
         className={`${btnStyles.Button} ${btnStyles.Black}`}
         // When user clicks button currentView updates to landing and trigers component reload
-        onClick={() => navigate("/")}
+        onClick={startOver}
       >
         Start Over
       </button>
