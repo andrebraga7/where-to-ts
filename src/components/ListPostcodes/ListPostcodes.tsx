@@ -1,9 +1,9 @@
-import { FormEvent, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { formatPostcode } from "../../utils"
 import { usePostcodes } from "../../contexts/PostcodesContext"
 import styles from "../../styles/ListPostcodes.module.scss"
 import btnStyles from "../../styles/Button.module.scss"
-// import Postcode from "./Postcode"
+import { Postcode } from "../Postcode"
 
 export const ListPostcodes = () => {
   const { postcodes, setPostcodes } = usePostcodes()
@@ -16,7 +16,7 @@ export const ListPostcodes = () => {
     </option>,
   ])
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
     const formattedPostcode = formatPostcode(newStop)
     setPostcodes((prevPostcodes) => [...prevPostcodes, formattedPostcode])
@@ -38,8 +38,6 @@ export const ListPostcodes = () => {
               key={index}
               postcode={postcode}
               index={index}
-              postcodes={postcodes}
-              setPostcodes={setPostcodes}
               selectOptions={selectOptions}
             />
           ))}
