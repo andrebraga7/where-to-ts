@@ -10,7 +10,6 @@ import { TravelMode } from "../TravelMode"
 import { Spinner } from "../../assets/Spinner/Spinner"
 
 export const Planning = () => {
-  // useState hook to create a postcodes array
   const { postcodes } = usePostcodes()
   const [travelMode, setTravelMode] = useState("Driving")
   const [hasLoaded, setHasLoaded] = useState(true)
